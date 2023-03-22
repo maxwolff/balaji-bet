@@ -23,19 +23,27 @@
     </style>
 </head>
 <body>
-    <h1 id="countdown">Minutes Until April 20</h1>
+    <h1 id="countdown">Balaji bet countdown:</h1>
     <h2 id="bitcoin-price">Bitcoin Price: </h2>
+    <a href="https://twitter.com/balajis/status/1636797265317867520">original tweet</a>
 
     <script>
         function updateCountdown() {
             const now = new Date();
-            const april20 = new Date(now.getFullYear(), 3, 20);
-            if (now > april20) {
-                april20.setFullYear(april20.getFullYear() + 1);
-            }
-            const difference = april20 - now;
-            const minutes = Math.floor(difference / 1000 / 60);
-            document.getElementById("countdown").innerText = `Minutes Until April 20: ${minutes}`;
+            const june15 = new Date(now.getFullYear(), 5, 15);
+            const difference = june15 - now;
+            const millisecondsDifference = june15 - now;
+            const minutesDifference = Math.floor(millisecondsDifference / 60000);
+            const hoursDifference = Math.floor(minutesDifference / 60);
+            const daysDifference = Math.floor(hoursDifference / 24);
+
+            const remainingDays = daysDifference;
+            const remainingHours = hoursDifference % 24;
+            const remainingMinutes = minutesDifference % 60;
+
+            let res = `${remainingDays} days, ${remainingHours} hours, ${remainingMinutes} minutes`;
+
+            document.getElementById("countdown").innerText = res;
         }
 
         async function updateBitcoinPrice() {
