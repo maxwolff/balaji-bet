@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown and Bitcoin Price</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="countdown">Minutes Until April 20</h1>
+    <h2 id="bitcoin-price">Bitcoin Price: </h2>
+
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            const april20 = new Date(now.getFullYear(), 3, 20);
+            if (now > april20) {
+                april20.setFullYear(april20.getFullYear() + 1);
+            }
+            const difference = april20 - now;
+            const minutes = Math.floor(difference / 1000 / 60);
+            document.getElementById("countdown").innerText = `Minutes Until April 20: ${minutes}`;
+        }
+
+        async function updateBitcoinPrice() {
+            const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd");
+            const data = await response.json();
+            document.getElementById("bitcoin-price").innerText = `Bitcoin Price: $${data.bitcoin.usd.toLocaleString()}`;
+        }
+
+        function updatePage() {
+            updateCountdown();
+            updateBitcoinPrice();
+        }
+
+        updatePage();
+        setInterval(updatePage, 60000); // Update every minute
+    </script>
+</body>
+</html>
