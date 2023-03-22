@@ -33,16 +33,10 @@
             margin-bottom: 20px;
         }
 
-        a {
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-top: 20px;
-            color: #42a5f5;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
+        .tweet-container {
+          display: flex;
+          justify-content: center;
+         }
         }
     </style>
 </head>
@@ -50,7 +44,10 @@
     <h1>Balaji Bet Countdown</h1>
     <h2 id="countdown"></h2>
     <h2 id="bitcoin-price"></h2>
-    <a href="https://twitter.com/balajis/status/1636797265317867520" target="_blank">Original Tweet</a>
+    <div class="tweet-container">
+        <blockquote class="twitter-tweet"><a href="https://twitter.com/balajis/status/1636797265317867520?ref_src=twsrc%5Etfw">Original Tweet</a></blockquote>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
 
     <script>
         function updateCountdown() {
